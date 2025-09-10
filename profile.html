@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Screenshot 2025-09-09 221052.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Screenshot 2025-09-09 221052.png">
+    <title>User Profile - AI Krishi Sahayak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navigation Placeholder -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="./chat.html" class="flex items-center py-4 px-2">
+                             <i class="fas fa-seedling text-green-500 mr-2"></i>
+                            <span class="font-semibold text-gray-500 text-lg">AI Krishi Sahayak</span>
+                        </a>
+                    </div>
+                </div>
+                 <div class="hidden md:flex items-center space-x-1">
+                     <a href="./chat.html" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Chat</a>
+                     <a href="./contact.html" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Contact Us</a>
+                     <a href="./auth.html" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="w-full p-8 bg-white rounded-2xl shadow-lg">
+            <a href="home.html" class="text-gray-400 hover:text-gray-700 transition" title="Go Back">
+                                <i class="fas fa-arrow-left text-2xl"></i>
+                            </a>
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900">
+                    User Profile
+                </h2>
+                <p class="mt-2 text-sm text-gray-600">Manage your account settings and view your history.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Left Column: Profile Settings -->
+                <div class="md:col-span-1">
+                    <div class="flex flex-col items-center text-center">
+                        <img class="w-32 h-32 bg-gray-300 rounded-full mb-4 object-cover" src="https://placehold.co/128x128/a0e0a0/333333?text=User" alt="User Avatar">
+                        <h3 class="text-xl font-semibold text-gray-800">Street Hackers</h3>
+                        <p class="text-sm text-gray-500">streethackers@example.com</p>
+                    </div>
+                     <form action="#" method="POST" class="space-y-4 mt-6">
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                            <input type="text" name="username" id="username" value="Street Hackers" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        </div>
+                         <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="email" value="streethackers@example.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="avatar" class="block text-sm font-medium text-gray-700">Change Avatar</label>
+                            <input type="file" name="avatar" id="avatar" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right Column: Chat History -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Conversation History</h3>
+                    <div class="space-y-4 max-h-96 overflow-y-auto pr-4">
+                        <!-- Chat History Item -->
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-semibold text-gray-700">Query about Wheat Rust</h4>
+                                <span class="text-xs text-gray-500">Sep 04, 2025</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 truncate">Bot: Yellow rust can be identified by small, yellow-to-orange stripes on the leaves. Recommended fungicides include...</p>
+                        </div>
+                         <!-- Chat History Item -->
+                         <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-semibold text-gray-700">Soil pH Levels</h4>
+                                <span class="text-xs text-gray-500">Sep 02, 2025</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 truncate">Bot: For potato crops, the ideal soil pH is between 5.2 and 6.4. You can raise pH by adding lime or wood ash...</p>
+                        </div>
+                         <!-- Chat History Item -->
+                         <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-semibold text-gray-700">Best Irrigation for Corn</h4>
+                                 <span class="text-xs text-gray-500">Aug 28, 2025</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 truncate">Bot: Drip irrigation is highly efficient for corn, as it delivers water directly to the root zone, minimizing evaporation...</p>
+                        </div>
+                         <!-- Chat History Item -->
+                         <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-semibold text-gray-700">Pest control for tomatoes</h4>
+                                 <span class="text-xs text-gray-500">Aug 25, 2025</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 truncate">Bot: For tomato hornworms, consider using Bacillus thuringiensis (Bt), a natural pesticide, or introduce natural predators like...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

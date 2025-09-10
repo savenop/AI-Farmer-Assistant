@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="/Screenshot 2025-09-09 221052.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Screenshot 2025-09-09 221052.png">
+  <title>AI Krishi Sahayak - Empowering Indian Farmers</title>
+
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Smooth fade-in */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-600 { animation-delay: 0.6s; }
+
+    /* Smooth hover effect for cards */
+    .hover-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Language switcher styling */
+    .lang-btn {
+      @apply px-3 py-1 rounded-md border border-green-500 text-green-600 hover:bg-green-500 hover:text-white transition;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Navigation -->
+    <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="flex items-center py-4 px-2">
+        <i class="fas fa-seedling text-green-500 mr-2 text-xl"></i>
+        <span class="font-semibold text-gray-700 text-lg">AI Krishi Sahayak</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="#about" class="py-2 px-3 font-medium text-gray-600 hover:text-green-600 transition">About</a>
+        <a href="#services" class="py-2 px-3 font-medium text-gray-600 hover:text-green-600 transition">Services</a>
+        <a href="#aim" class="py-2 px-3 font-medium text-gray-600 hover:text-green-600 transition">Our Aim</a>
+        <a href="/contact.html" class="py-2 px-3 font-medium text-gray-600 hover:text-green-600 transition">Contact</a>
+        <a href="./auth.html" class="py-2 px-4 font-medium text-white bg-red-500 rounded hover:bg-red-600 transition">Logout</a>
+        <button id="langToggle" class="lang-btn">हिन्दी</button>
+
+        <!-- Profile Section -->
+        <a href="./profile.html" class="flex items-center space-x-2 ml-4">
+          <img src="https://i.pravatar.cc/40" alt="Profile" class="w-8 h-8 rounded-full border-2 border-green-500">
+          <span class="hidden md:inline font-medium text-gray-700">My Profile</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden mobile-menu-button">
+        <i class="fas fa-bars text-gray-600 text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="hidden mobile-menu bg-white px-4 pb-4 space-y-2 md:hidden">
+      <a href="#about" class="block py-2 text-gray-600 hover:text-green-600">About</a>
+      <a href="#services" class="block py-2 text-gray-600 hover:text-green-600">Services</a>
+      <a href="#aim" class="block py-2 text-gray-600 hover:text-green-600">Our Aim</a>
+      <a href="#contact" class="block py-2 text-gray-600 hover:text-green-600">Contact</a>
+      <a href="./auth.html" class="block py-2 text-red-500 font-medium">Logout</a>
+      <a href="./profile.html" class="flex items-center space-x-2 py-2">
+        <img src="https://i.pravatar.cc/40" alt="Profile" class="w-8 h-8 rounded-full border-2 border-green-500">
+        <span class="font-medium text-gray-700">My Profile</span>
+      </a>
+      <button id="langToggleMobile" class="lang-btn w-full">हिन्दी</button>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <!-- <section class="bg-green-50 py-16 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 fade-in lang" data-en="Empowering Farmers with AI" data-hi="किसानों को एआई से सशक्त बनाना">Empowering Farmers with AI</h1>
+    <p class="text-lg text-gray-600 mb-6 fade-in delay-200 lang" data-en="Your AI-powered farming assistant for smart, sustainable, and profitable agriculture across India." data-hi="भारत भर में स्मार्ट, टिकाऊ और लाभकारी कृषि के लिए आपका एआई आधारित खेती सहायक।">Your AI-powered farming assistant for smart, sustainable, and profitable agriculture across India.</p>
+    <a href="./chat.html" class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition fade-in delay-400">
+      <span class="lang" data-en="Start Chatting with AI" data-hi="एआई से चैट करना शुरू करें">Start Chatting with AI</span>
+    </a>
+    
+
+     <a href="./chat.html" class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition fade-in delay-400">
+      <span class="lang" data-en="Start Chatting with AI" data-hi="एआई से चैट करना शुरू करें">Start Chatting with AI</span>
+    </a>
+
+  </section> -->
+
+
+<!-- <section class="bg-green-50 py-16 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 fade-in lang" data-en="Empowering Farmers with AI" data-hi="किसानों को एआई से सशक्त बनाना">Empowering Farmers with AI</h1>
+    <p class="text-lg text-gray-600 mb-6 fade-in delay-200 lang" data-en="Your AI-powered farming assistant for smart, sustainable, and profitable agriculture across India." data-hi="भारत भर में स्मार्ट, टिकाऊ और लाभकारी कृषि के लिए आपका एआई आधारित खेती सहायक।">Your AI-powered farming assistant for smart, sustainable, and profitable agriculture across India.</p>
+    
+    <div class="mt-8">
+      <a href="./chat.html" class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition fade-in delay-400 inline-block">
+        <span class="lang" data-en="Start Chatting with AI" data-hi="एआई से चैट करना शुरू करें">Start Chatting with AI</span>
+      </a>
+      
+      <a href="./voice-chat.html" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition fade-in delay-600 inline-block ml-4">
+        <span class="lang" data-en="Start Voice Chat with AI" data-hi="एआई से वॉयस चैट शुरू करें">Start Voice Chat with AI</span>
+      </a>
+
+
+
+
+       <a href="./image-upload.html" class="bg-purple-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-600 transition fade-in delay-[800ms] inline-block">
+        <span class="lang" data-en="Send Picture for AI" data-hi="एआई के लिए तस्वीर भेजें">Send Picture for AI</span>
+      </a>
+    </div>
+    </div>
+
+</section> -->
+
+
+<section class="bg-green-50 py-16 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 fade-in lang" data-en="Empowering Farmers with AI" data-hi="किसानों को एआई से सशक्त बनाना">Empowering Farmers with AI</h1>
+    <p class="text-lg text-gray-600 mb-6 fade-in delay-200 lang" data-en="Your AI-powered farming assistant for smart, sustainable, and profitable agriculture across India." data-hi="भारत भर में स्मार्ट, टिकाऊ और लाभकारी कृषि के लिए आपका एआई आधारित खेती सहायक।">Your AI-powered farming assistant for smart, sustainable, and profitable agriculture across India.</p>
+    
+    <div class="mt-8">
+      <div class="mb-4">
+        <a href="./chat.html" class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition fade-in delay-400 inline-block">
+          <span class="lang" data-en="Start Chatting with AI" data-hi="एआई से चैट करना शुरू करें">Start Chatting with AI</span>
+        </a>
+        
+        <a href="./voice.html" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition fade-in delay-600 inline-block ml-2 md:ml-4">
+          <span class="lang" data-en="Start Voice Chat with AI" data-hi="एआई से वॉयस चैट शुरू करें">Start Voice Chat with AI</span>
+        </a>
+      </div>
+
+      <div>
+        <a href="./pic.html" class="bg-purple-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-600 transition fade-in delay-[800ms] inline-block">
+          <span class="lang" data-en="Send Picture for AI" data-hi="एआई के लिए तस्वीर भेजें">Send Picture for AI</span>
+        </a>
+      </div>
+    </div>
+
+</section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      <img src="Screenshot 2025-09-09 221052.png" alt="Indian Farmer" class="rounded-2xl shadow-lg fade-in">
+      <div class="fade-in delay-200">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-4 lang" data-en="Who We Are" data-hi="हम कौन हैं">Who We Are</h2>
+        <p class="text-gray-600 leading-relaxed mb-4 lang" data-en="AI Krishi Sahayak is an AI-based Farmer Query Support and Advisory System designed to assist farmers across India." data-hi="एआई फार्मर असिस्टेंट एक एआई आधारित किसान प्रश्न सहायता और परामर्श प्रणाली है, जिसे पूरे भारत के किसानों की मदद के लिए बनाया गया है।">AI Krishi Sahayak is an AI-based Farmer Query Support and Advisory System designed to assist farmers across India.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-12 fade-in lang" data-en="How We Help Farmers" data-hi="हम किसानों की कैसे मदद करते हैं">How We Help Farmers</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-2xl shadow-md hover-card fade-in">
+          <i class="fas fa-cloud-sun text-green-500 text-3xl mb-4"></i>
+          <h3 class="text-xl font-bold text-gray-800 mb-2 lang" data-en="Weather Updates" data-hi="मौसम की जानकारी">Weather Updates</h3>
+          <p class="text-gray-600 lang" data-en="Get real-time weather forecasts to plan farming better." data-hi="बेहतर खेती की योजना के लिए वास्तविक समय मौसम पूर्वानुमान प्राप्त करें।">Get real-time weather forecasts to plan farming better.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-md hover-card fade-in delay-200">
+          <i class="fas fa-bug text-green-500 text-3xl mb-4"></i>
+          <h3 class="text-xl font-bold text-gray-800 mb-2 lang" data-en="Pest & Disease Advisory" data-hi="कीट और रोग परामर्श">Pest & Disease Advisory</h3>
+          <p class="text-gray-600 lang" data-en="AI-powered suggestions to tackle crop diseases effectively." data-hi="फसलों के रोगों से निपटने के लिए एआई आधारित सुझाव।">AI-powered suggestions to tackle crop diseases effectively.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-md hover-card fade-in delay-400">
+          <i class="fas fa-tractor text-green-500 text-3xl mb-4"></i>
+          <h3 class="text-xl font-bold text-gray-800 mb-2 lang" data-en="Farming Techniques" data-hi="खेती की तकनीक">Farming Techniques</h3>
+          <p class="text-gray-600 lang" data-en="Learn modern and traditional methods for better yield." data-hi="बेहतर उपज के लिए आधुनिक और पारंपरिक तरीकों को सीखें।">Learn modern and traditional methods for better yield.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aim -->
+  <section id="aim" class="py-16 bg-green-100 text-center">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-6 fade-in lang" data-en="Our Aim" data-hi="हमारा उद्देश्य">Our Aim</h2>
+    <p class="text-lg text-gray-700 fade-in delay-200 leading-relaxed lang" data-en="We aim to empower every farmer in India with AI-driven knowledge and tools for sustainable agriculture." data-hi="हमारा उद्देश्य भारत के प्रत्येक किसान को टिकाऊ कृषि के लिए एआई आधारित ज्ञान और उपकरणों से सशक्त बनाना है।">We aim to empower every farmer in India with AI-driven knowledge and tools for sustainable agriculture.</p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-6 fade-in lang" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</h2>
+      <p class="text-gray-600 mb-4">📧 support@aifarmer.in | 📞 +91-9389322808</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-6 text-center">
+    <p class="lang" data-en="© 2025 AI Krishi Sahayak. All Rights Reserved." data-hi="© 2025 एआई फार्मर असिस्टेंट। सर्वाधिकार सुरक्षित।">© 2025 AI Krishi Sahayak. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-button').addEventListener('click', () => {
+      document.querySelector('.mobile-menu').classList.toggle('hidden');
+    });
+
+    // Language toggle
+    function switchLanguage(lang) {
+      document.querySelectorAll('.lang').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+    }
+
+    let currentLang = 'en';
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'hi' : 'en';
+      switchLanguage(currentLang);
+      document.getElementById('langToggle').textContent = currentLang === 'en' ? 'हिन्दी' : 'English';
+      document.getElementById('langToggleMobile').textContent = currentLang === 'en' ? 'हिन्दी' : 'English';
+    }
+
+    document.getElementById('langToggle').addEventListener('click', toggleLang);
+    document.getElementById('langToggleMobile').addEventListener('click', toggleLang);
+  </script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Screenshot 2025-09-09 221052.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Screenshot 2025-09-09 221052.png">
+    <title>AI Krishi Sahayak Query Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for a cleaner look */
+        #chat-window::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chat-window::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        #chat-window::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 3px;
+        }
+        #chat-window::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+        .suggestion-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .suggestion-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen antialiased text-gray-800">
+        <div class="flex flex-row h-full w-full overflow-x-hidden">
+            <div class="flex flex-col flex-auto h-full p-4 md:p-6">
+                <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white shadow-lg h-full p-4">
+                    
+                    <div class="flex items-center justify-between pb-4 border-b-2 border-gray-200">
+                        <div class="flex items-center space-x-3">
+
+<a href="home.html" class="text-gray-400 hover:text-gray-700 transition" title="Go Back">
+                                <i class="fas fa-arrow-left text-2xl"></i>
+                            </a>
+
+                             <div class="flex items-center justify-center h-12 w-12 rounded-full bg-green-500 text-white text-xl">
+
+                                
+                                 <i class="fas fa-seedling"></i>
+                            </div>
+                            <div>
+
+
+
+
+                                <p class="text-xl font-bold">AI Krishi Sahayak</p>
+                                <p class="text-sm text-green-600 font-medium">
+                                    <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-1.5"></span>
+                                    Online
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chat-window" class="flex flex-col h-full overflow-y-auto mb-4 p-4">
+                        <div class="flex flex-col space-y-4" id="chat-log">
+                           <div class="col-start-1 col-end-12 p-3 rounded-lg">
+                                <div class="flex flex-row items-end">
+                                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 text-white flex-shrink-0">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="relative ml-3 text-sm bg-gray-100 py-2 px-4 shadow rounded-xl">
+                                        <div>Hello! I am your AI Krishi Sahayak, powered by Gemini. How can I help you today with your crops, soil, or any other farming query?</div>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row items-center h-16 rounded-xl bg-gray-50 w-full px-4">
+                        <div class="flex-grow">
+                            <div class="relative w-full">
+                                <input id="message-input" type="text" class="flex w-full border rounded-xl focus:outline-none focus:border-green-400 pl-4 h-10" placeholder="Type your query here..."/>
+                            </div>
+                        </div>
+
+<a href="voice.html">
+
+                        <div class="flex items-center space-x-3 ml-4">
+                            <button  class="flex items-center justify-center text-gray-400 hover:text-green-500 transition" title="Use Voice">
+                                <i class="fas fa-microphone text-xl"></i>
+                            </button>
+
+                            </a>
+
+                            <a href="pic.html">
+                            <button  class="flex items-center justify-center text-gray-400 hover:text-green-500 transition" title="Upload Picture">
+                                <i class="fas fa-paperclip text-xl"></i>
+                            </button>
+                            </a>
+                        </div>
+                        <div class="ml-4">
+                            <button id="send-button" class="flex items-center justify-center bg-green-500 hover:bg-green-600 rounded-xl text-white px-4 py-2 flex-shrink-0 transition duration-150">
+                                <span>Send</span>
+                                <span class="ml-2">
+                                    <svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatLog = document.getElementById('chat-log');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const chatWindow = document.getElementById('chat-window');
+
+        // Your API Key
+        const apiKey = "AIzaSyCA-2w-6NRgBk8bWkhT2z3FgtS3C8tVplw";
+
+        // Store chat history for context
+        let lastUserQuery = '';
+        let lastBotResponse = '';
+
+        const sendMessage = async () => {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+
+            displayUserMessage(message);
+            messageInput.value = '';
+            messageInput.focus();
+            
+            lastUserQuery = message;
+            await getBotResponse(message);
+        };
+        
+        const displayUserMessage = (message) => {
+            const messageId = `user-${Date.now()}`;
+            const messageHTML = `
+                <div id="${messageId}" class="col-start-3 md:col-start-6 col-end-13 p-3 rounded-lg">
+                    <div class="flex items-center justify-start flex-row-reverse">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 text-white flex-shrink-0">
+                           <i class="fas fa-user"></i>
+                        </div>
+                        <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                            <div>${message}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatLog.innerHTML += messageHTML;
+            scrollToBottom();
+        };
+        
+        const displayBotMessage = (message, sources = [], messageId) => {
+            lastBotResponse = message; // Store the raw text response
+            
+            let sourcesHTML = '';
+            if (sources.length > 0) {
+                sourcesHTML += '<div class="mt-3 pt-2 border-t border-gray-200"><p class="text-xs font-semibold text-gray-600">Sources:</p><ul class="list-disc list-inside text-xs">';
+                sources.forEach(source => {
+                    sourcesHTML += `<li><a href="${source.uri}" target="_blank" class="text-blue-500 hover:underline">${source.title}</a></li>`;
+                });
+                sourcesHTML += '</ul></div>';
+            }
+
+            const messageHTML = `
+                <div class="col-start-1 col-end-12 p-3 rounded-lg">
+                    <div class="flex flex-row items-end">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 text-white flex-shrink-0">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="relative ml-3 text-sm bg-gray-100 py-2 px-4 shadow rounded-xl w-full">
+                            <div>${message.replace(/\n/g, '<br>')}</div>
+                            ${sourcesHTML}
+                            <div class="mt-3 flex items-center justify-end">
+                                <button onclick="fetchSmartSuggestions('${messageId}')" class="text-xs bg-green-100 text-green-800 font-semibold py-1 px-3 rounded-full hover:bg-green-200 transition duration-200">
+                                    ✨ Get Smart Suggestions
+                                 </button>
+                            </div>
+                            <div id="suggestions-${messageId}" class="mt-2 flex flex-wrap gap-2"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.outerHTML = messageHTML;
+            } else {
+                 chatLog.innerHTML += messageHTML;
+            }
+            scrollToBottom();
+        };
+
+        const displayBotErrorMessage = (message) => {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+            const messageHTML = `
+                <div class="col-start-1 col-end-12 p-3 rounded-lg">
+                    <div class="flex flex-row items-end">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-red-500 text-white flex-shrink-0">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="relative ml-3 text-sm bg-red-100 py-2 px-4 shadow rounded-xl">
+                            <div>${message}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatLog.innerHTML += messageHTML;
+            scrollToBottom();
+        };
+
+        const displayTypingIndicator = () => {
+             const typingHTML = `
+                <div id="typing-indicator" class="col-start-1 col-end-12 p-3 rounded-lg">
+                    <div class="flex flex-row items-end">
+                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 text-white flex-shrink-0">
+                             <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="relative ml-3 text-sm bg-gray-100 py-2 px-4 shadow rounded-xl">
+                           <div class="flex items-center space-x-1">
+                               <span class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0s;"></span>
+                               <span class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></span>
+                               <span class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></span>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatLog.innerHTML += typingHTML;
+            scrollToBottom();
+        };
+
+        const fetchWithExponentialBackoff = async (url, options, maxRetries = 5) => {
+            let delay = 1000;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.ok) {
+                        return response;
+                    } else {
+                        const errorBody = await response.text();
+                        console.error(`API request failed with status ${response.status}: ${response.statusText}`, `Response body: ${errorBody}`);
+                        // Don't retry on client-side errors (4xx)
+                        if (response.status >= 400 && response.status < 500) {
+                            throw new Error(`Client-side error: ${response.status}. Aborting retries.`);
+                        }
+                    }
+                } catch (error) {
+                    console.error(`Fetch attempt ${i + 1} failed:`, error);
+                    if (error.message.startsWith('Client-side error')) {
+                        throw error; // Re-throw to stop retries immediately
+                    }
+                }
+                // Wait before the next retry
+                await new Promise(resolve => setTimeout(resolve, delay));
+                delay *= 2; // Double the delay for the next attempt
+            }
+            throw new Error("Failed to fetch from API after multiple retries.");
+        };
+
+        const getBotResponse = async (userMessage) => {
+            displayTypingIndicator();
+            const messageId = `bot-${Date.now()}`;
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const systemPrompt = "You are an expert AI agricultural advisor for farmers in India. Your name is 'AgriBot'. Provide concise, accurate, and actionable advice. Use Google Search to find real-time information on weather, crop diseases, market prices, and modern farming techniques relevant to India. Always present information clearly.";
+
+                const payload = {
+                    contents: [{ parts: [{ text: userMessage }] }],
+                    tools: [{ "google_search": {} }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                const response = await fetchWithExponentialBackoff(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const result = await response.json();
+                const candidate = result.candidates?.[0];
+
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    const text = candidate.content.parts[0].text;
+                    let sources = [];
+                    const groundingMetadata = candidate.groundingMetadata;
+                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                        sources = groundingMetadata.groundingAttributions
+                            .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
+                            .filter(source => source.uri && source.title);
+                    }
+                    displayBotMessage(text, sources, messageId);
+                } else {
+                    displayBotErrorMessage("Sorry, I couldn't process that. Could you please rephrase your question?");
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                if (error.message.includes('401')) {
+                    displayBotErrorMessage("Authentication failed (Error 401). Please ensure the API key is configured correctly in your environment.");
+                } else {
+                    displayBotErrorMessage("I'm having trouble connecting to the AI service right now. Please check the console for details and try again in a moment.");
+                }
+            }
+        };
+
+        const fetchSmartSuggestions = async (messageId) => {
+            const suggestionsContainer = document.getElementById(`suggestions-${messageId}`);
+            suggestionsContainer.innerHTML = `<p class="text-xs text-gray-500">✨ Generating ideas...</p>`;
+            
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const prompt = `Based on this user query: "${lastUserQuery}" and this response: "${lastBotResponse}", suggest 3 short, relevant follow-up questions a farmer might ask.`;
+            
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: { type: "STRING" }
+                        }
+                    }
+                };
+            
+                const response = await fetchWithExponentialBackoff(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (jsonText) {
+                    const suggestions = JSON.parse(jsonText);
+                    suggestionsContainer.innerHTML = ''; // Clear loading text
+                    suggestions.forEach(suggestion => {
+                        const button = document.createElement('button');
+                        button.textContent = suggestion;
+                        button.className = 'suggestion-btn text-xs bg-gray-200 text-gray-800 font-medium py-1.5 px-3 rounded-lg hover:bg-gray-300';
+                        button.onclick = () => {
+                            messageInput.value = suggestion;
+                            sendMessage();
+                        };
+                        suggestionsContainer.appendChild(button);
+                    });
+                } else {
+                     suggestionsContainer.innerHTML = `<p class="text-xs text-red-500">Could not generate suggestions.</p>`;
+                }
+            } catch(error) {
+                 console.error('Error fetching suggestions:', error);
+                 suggestionsContainer.innerHTML = `<p class="text-xs text-red-500">Error fetching suggestions. Check console for details.</p>`;
+            }
+        };
+        
+        const scrollToBottom = () => {
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        };
+
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        window.onload = scrollToBottom;
+    </script>
+</body>
+</html>
